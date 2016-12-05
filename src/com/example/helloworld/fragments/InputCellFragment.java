@@ -2,7 +2,6 @@ package com.example.helloworld.fragments;
 
 import com.example.helloworld.R;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -17,7 +16,7 @@ public class InputCellFragment extends BaseInputCellFragment {
 	private EditText etContent;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view=inflater.inflate(R.layout.fragment_input_cell, null);
+		View view=inflater.inflate(R.layout.fragment_input_cell, container);
 		tvLabel=(TextView) view.findViewById(R.id.tvLabel);
 		etContent=(EditText) view.findViewById(R.id.etContent);
 		return view;

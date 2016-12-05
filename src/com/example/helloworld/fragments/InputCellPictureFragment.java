@@ -1,26 +1,20 @@
 package com.example.helloworld.fragments;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import com.example.helloworld.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.MediaStore.Images.Media;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +23,10 @@ public class InputCellPictureFragment extends BaseInputCellFragment {
 	private TextView tvLabel;
 	private TextView tvHint;
 	private ImageView ivImg;
-	private String TAG = "ggg";
+	private static final String TAG = "ggg";
+	private static final int REQUEST_PHOTO=0;
+	private static final int REQUEST_CHOOSE_PHOTO=1;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +45,7 @@ public class InputCellPictureFragment extends BaseInputCellFragment {
 	}
 
 	private void setImg() {
-		Log.e("ggg", "a");
+		Log.e(TAG, "HELLO");
 		String[] items = new String[] { "≈ƒ’’", "±æµÿ" };
 		new AlertDialog.Builder(getActivity()).setTitle("—°‘ÒÕº∆¨").setItems(items, new DialogInterface.OnClickListener() {
 
@@ -69,13 +66,13 @@ public class InputCellPictureFragment extends BaseInputCellFragment {
 
 	private void takePhoto() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(intent, 1);
+		startActivityForResult(intent, REQUEST_PHOTO);
 	}
 
 	private void choosePhoto() {
 		Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 		intent.setType("image/*");
-		startActivityForResult(intent, 2);
+		startActivityForResult(intent, REQUEST_CHOOSE_PHOTO);
 	}
 
 	@Override
@@ -83,10 +80,10 @@ public class InputCellPictureFragment extends BaseInputCellFragment {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_CANCELED)
 			return;
-		if (requestCode == 1) {
+		if (requestCode == REQUEST_PHOTO) {
 			Bitmap bmp = (Bitmap) data.getExtras().get("data");
 			ivImg.setImageBitmap(bmp);
-		}else if(requestCode==2){
+		}else if(requestCode==REQUEST_CHOOSE_PHOTO){
 			try {
 				Bitmap bmp=Media.getBitmap(getActivity().getContentResolver(), data.getData());
 				ivImg.setImageBitmap(bmp);
