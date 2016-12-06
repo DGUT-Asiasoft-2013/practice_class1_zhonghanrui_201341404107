@@ -1,44 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@android:color/white"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
         android:layout_margin="20dp"
         android:orientation="vertical" >
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入用户名" />
+            android:gravity="center"
+            android:text="登陆"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-        <EditText
+        <fragment
+            android:id="@+id/fragmentAccount"
+            android:name="com.example.helloworld.fragments.InputCellFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="请输入密码" />
-        
-        <Button 
+            tools:layout="@layout/fragment_input_cell" />
+
+        <fragment
+            android:id="@+id/fragmentPassword"
+            android:name="com.example.helloworld.fragments.InputCellFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_input_cell" />
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:text="登陆"
             android:layout_marginTop="20dp"
+            android:id="@+id/btnLogin"
             android:background="@drawable/selector_btn"
-            />
-        
-        <TextView
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="right"
-            android:id="@+id/tvRegister"
-            android:textColor="@android:color/holo_blue_light"
-            android:layout_width="wrap_content"
+            android:text="登陆" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="注册" />
+             >
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="注册"
+                android:textColor="@android:color/holo_blue_light" />
+
+            <TextView
+                android:id="@+id/tvFindPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="找回密码"
+                android:layout_alignParentRight="true"
+                android:textColor="@android:color/holo_blue_light" />
+        </RelativeLayout>
     </LinearLayout>
 
 </FrameLayout>

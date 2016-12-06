@@ -19,32 +19,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_input_cell" />
-             <fragment
+
+            <fragment
+                android:id="@+id/fragmentEmail"
+                android:name="com.example.helloworld.fragments.InputCellFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_input_cell" />
+
+            <fragment
                 android:id="@+id/fragmentPassword"
                 android:name="com.example.helloworld.fragments.InputCellFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_input_cell" />
-              <fragment
+
+            <fragment
                 android:id="@+id/fragmentPasswordRepeat"
                 android:name="com.example.helloworld.fragments.InputCellFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_input_cell" />
 
-              <fragment
-                  android:id="@+id/fragmentPic"
-                  android:name="com.example.helloworld.fragments.InputCellPictureFragment"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  tools:layout="@layout/fragment_inputcell_picutre" />
+            <fragment
+                android:id="@+id/fragmentPic"
+                android:name="com.example.helloworld.fragments.InputCellPictureFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_inputcell_picutre" />
 
             <Button
                 android:id="@+id/btn_submit"
-                android:layout_margin="10dp"
-                android:background="@drawable/selector_btn"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/selector_btn"
                 android:text="SUBMIT" />
         </LinearLayout>
     </ScrollView>

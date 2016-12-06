@@ -10,6 +10,7 @@ public class RegisterActivity extends Activity {
 	private InputCellFragment fragmentAccount;
 	private InputCellFragment fragmentPassword;
 	private InputCellFragment fragmentPasswordRepeat;
+	private InputCellFragment fragmentEmail;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,6 +19,7 @@ public class RegisterActivity extends Activity {
 		fragmentAccount=(InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentAccount);
 		fragmentPassword=(InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentPassword);
 		fragmentPasswordRepeat=(InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentPasswordRepeat);
+		fragmentEmail=(InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentEmail);
 	}
 
 	@Override
@@ -35,5 +37,8 @@ public class RegisterActivity extends Activity {
 		fragmentPasswordRepeat.setLabel("÷ÿ∏¥√‹¬Î");
 		fragmentPasswordRepeat.setInputHint("«Î ‰»Î÷ÿ∏¥√‹¬Î");
 		fragmentPasswordRepeat.setPassword(true);
+		
+		fragmentEmail.setLabel("◊¢≤·” œ‰");
+		fragmentEmail.setInputHint("«Î ‰»Î” œ‰");
 	}
 }
