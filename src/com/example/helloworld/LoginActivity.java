@@ -32,8 +32,20 @@ public class LoginActivity extends Activity {
 				goLogin();
 			}
 		});
+		findViewById(R.id.tvFindPwd).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				findPwd();
+			}
+		});
 		fragmentAccount = (InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentAccount);
 		fragmentPassword = (InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentPassword);
+	}
+
+	private void findPwd() {
+		Intent intent = new Intent(this, PasswordRecoverActivity.class);
+		startActivity(intent);
 	}
 
 	private void goRegister() {

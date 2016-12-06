@@ -29,6 +29,7 @@
         <activity android:name="com.example.helloworld.RegisterActivity" >
         </activity>
         <activity android:name="com.example.helloworld.HelloWorldActivity"></activity>
+        <activity android:name="com.example.helloworld.PasswordRecoverActivity"></activity>
     </application>
 
 </manifest>
