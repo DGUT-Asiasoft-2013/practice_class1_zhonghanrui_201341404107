@@ -4,11 +4,18 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-   <TextView 
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Hello World"
-       
-       android:layout_gravity="center"
-       />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Hello World" />
+
+    <fragment
+        android:layout_gravity="bottom"
+        android:id="@+id/fragmentTabbar"
+        android:name="com.example.helloworld.fragments.MainTabbarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_main_tabbar" />
+
 </FrameLayout>
