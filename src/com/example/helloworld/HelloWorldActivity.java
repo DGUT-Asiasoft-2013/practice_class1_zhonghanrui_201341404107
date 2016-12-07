@@ -37,7 +37,7 @@ public class HelloWorldActivity extends Activity {
 	}
 
 	private void contentChange(int index) {
-		getFragmentManager().beginTransaction().replace(R.id.container, frags[index]).addToBackStack(null).commit();
+		getFragmentManager().beginTransaction().replace(R.id.container, frags[index]).commit();
 	}
 
 	@Override

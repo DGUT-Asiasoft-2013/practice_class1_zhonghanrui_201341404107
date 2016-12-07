@@ -3,26 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <TextView 
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="新内容"
-        android:textSize="18sp"
-        android:layout_margin="5dp"
         android:layout_gravity="center_horizontal"
-        />
-    <View 
+        android:layout_margin="5dp"
+        android:text="新内容"
+        android:textSize="18sp" />
+
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/darker_gray" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="start"
+        android:hint="请输入新内容" />
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/selector_btn"
+        android:text="提交"
         />
-    
-<EditText 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:hint="请输入新内容"
-    android:gravity="start"
-    />
-    
+
 </LinearLayout>

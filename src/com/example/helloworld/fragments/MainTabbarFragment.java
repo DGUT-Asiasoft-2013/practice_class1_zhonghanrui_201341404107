@@ -49,6 +49,7 @@ public class MainTabbarFragment extends Fragment {
 	private void onBtnClick(){
 		Intent intent=new Intent(getActivity(),AddContentActivity.class);
 		startActivity(intent);
+		getActivity().overridePendingTransition(R.anim.slide_in_bottom, 0);
 	}
 	
 	public void setSelectedItem(int index){
