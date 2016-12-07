@@ -1,8 +1,10 @@
 package com.example.helloworld.fragments;
 
+import com.example.helloworld.AddContentActivity;
 import com.example.helloworld.R;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +36,19 @@ public class MainTabbarFragment extends Fragment {
 				}
 			});
 		}
+		btnNew.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				onBtnClick();
+			}
+		});
 		return view;
+	}
+	
+	private void onBtnClick(){
+		Intent intent=new Intent(getActivity(),AddContentActivity.class);
+		startActivity(intent);
 	}
 	
 	public void setSelectedItem(int index){

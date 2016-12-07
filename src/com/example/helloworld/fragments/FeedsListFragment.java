@@ -1,8 +1,5 @@
 package com.example.helloworld.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.example.helloworld.FeedContentActivity;
 import com.example.helloworld.R;
 
