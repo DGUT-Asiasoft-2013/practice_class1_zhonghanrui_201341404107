@@ -10,6 +10,9 @@ public class AddContentActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_content);
 	}
+	/**
+	 * ºóÍË¶¯»­
+	 */
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
