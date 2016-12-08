@@ -57,12 +57,12 @@ public class FeedsListFragment extends Fragment {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = null;
 			if (convertView == null) {
-				view = View.inflate(getActivity(), android.R.layout.simple_list_item_1, null);
+				view = View.inflate(getActivity(), R.layout.listview_item_feed, null);
 			} else {
 				view = convertView;
 			}
-			TextView textView1 = (TextView) view.findViewById(android.R.id.text1);
-			textView1.setText("Name: " +arrays[position]);
+			TextView tvName = (TextView) view.findViewById(R.id.tvName);
+			tvName.setText(arrays[position]);
 			return view;
 		}
 
