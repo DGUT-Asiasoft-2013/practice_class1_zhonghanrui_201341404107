@@ -1,5 +1,7 @@
 package com.example.helloworld.fragments;
 
+import java.io.ByteArrayOutputStream;
+
 import com.example.helloworld.R;
 
 import android.app.Activity;
@@ -26,7 +28,7 @@ public class InputCellPictureFragment extends BaseInputCellFragment {
 	private static final String TAG = "ggg";
 	private static final int REQUEST_PHOTO=0;
 	private static final int REQUEST_CHOOSE_PHOTO=1;
-	
+	private byte[] pngData;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,6 +77,16 @@ public class InputCellPictureFragment extends BaseInputCellFragment {
 		startActivityForResult(intent, REQUEST_CHOOSE_PHOTO);
 	}
 
+	private void setPngData(Bitmap bmp){
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+		pngData = stream.toByteArray();
+	}
+	
+	public byte[] getPngData() {
+		return pngData;
+	}
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -82,10 +94,12 @@ public class InputCellPictureFragment extends BaseInputCellFragment {
 			return;
 		if (requestCode == REQUEST_PHOTO) {
 			Bitmap bmp = (Bitmap) data.getExtras().get("data");
+			setPngData(bmp);
 			ivImg.setImageBitmap(bmp);
 		}else if(requestCode==REQUEST_CHOOSE_PHOTO){
 			try {
 				Bitmap bmp=Media.getBitmap(getActivity().getContentResolver(), data.getData());
+				setPngData(bmp);
 				ivImg.setImageBitmap(bmp);
 			} catch (Exception e) {
 				e.printStackTrace();

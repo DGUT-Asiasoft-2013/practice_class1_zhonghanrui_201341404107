@@ -34,6 +34,7 @@ public class InputCellFragment extends BaseInputCellFragment {
 		return etContent.getText().toString();
 	}
 	
+	
 	public void setPassword(boolean isPwd){
 		if(isPwd){
 			etContent.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
