@@ -20,6 +20,13 @@
                 android:layout_height="wrap_content"
                 tools:layout="@layout/fragment_input_cell" />
 
+             <fragment
+                android:id="@+id/fragmentName"
+                android:name="com.example.helloworld.fragments.InputCellFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_input_cell" />
+             
             <fragment
                 android:id="@+id/fragmentEmail"
                 android:name="com.example.helloworld.fragments.InputCellFragment"
@@ -49,12 +56,12 @@
                 tools:layout="@layout/fragment_inputcell_picutre" />
 
             <Button
-                android:id="@+id/btn_submit"
+                android:id="@+id/btnSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/selector_btn"
-                android:text="SUBMIT" />
+                android:text="提交" />
         </LinearLayout>
     </ScrollView>
 
