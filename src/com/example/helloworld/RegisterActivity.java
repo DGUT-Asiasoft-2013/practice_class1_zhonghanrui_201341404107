@@ -2,9 +2,11 @@ package com.example.helloworld;
 
 import java.io.IOException;
 
+import com.example.helloworld.entity.User;
 import com.example.helloworld.fragments.InputCellFragment;
 import com.example.helloworld.fragments.InputCellPictureFragment;
 import com.example.helloworld.util.MD5;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -74,9 +76,12 @@ public class RegisterActivity extends Activity {
 		OkHttpClient client = new OkHttpClient();
 
 		MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM)
-				.addFormDataPart("account", account).addFormDataPart("name", name).addFormDataPart("password", MD5.getMD5(password))
-				.addFormDataPart("email", email);
-		builder.addFormDataPart("avatar", "avatar", RequestBody.create(MEDIA_TYPE_PNG, fragmentPic.getPngData()));
+				.addFormDataPart("account", account).addFormDataPart("name", name)
+				.addFormDataPart("password", MD5.getMD5(password)).addFormDataPart("email", email);
+		byte[] pngData = fragmentPic.getPngData();
+		if (pngData != null) {
+			builder.addFormDataPart("avatar", "avatar", RequestBody.create(MEDIA_TYPE_PNG, pngData));
+		}
 		MultipartBody body = builder.build();
 
 		Request request = new Request.Builder().method("GET", null).post(body)
@@ -86,19 +91,40 @@ public class RegisterActivity extends Activity {
 
 			@Override
 			public void onResponse(final Call arg0, final Response arg1) throws IOException {
-				runOnUiThread(new Runnable() {
 
-					@Override
-					public void run() {
-						RegisterActivity.this.onResponse(arg0, arg1);
+				String jsonString = arg1.body().string();
+				ObjectMapper mapper = new ObjectMapper();
+				User user = null;
+				try {
+					user = mapper.readValue(jsonString, User.class);
+					if (user != null) {
+						runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								RegisterActivity.this.onResponse(arg0, arg1);
+							}
+						});
 					}
-				});
+				} catch (Exception e) {
+					e.printStackTrace();
+					runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							Toast.makeText(RegisterActivity.this, "数据解析异常", Toast.LENGTH_SHORT).show();
+							progressDialog.dismiss();
+						}
+					});
+					return;
+				}
+
 			}
 
 			@Override
 			public void onFailure(final Call arg0, final IOException arg1) {
 				runOnUiThread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						RegisterActivity.this.onFailure(arg0, arg1);
@@ -112,14 +138,15 @@ public class RegisterActivity extends Activity {
 		progressDialog.dismiss();
 		Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
 		finish();
-//		try {
-//			new AlertDialog.Builder(this).setTitle("请求成功").setMessage(response.body().string())
-//					.setNegativeButton("确定", null).show();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//			Log.e(TAG, e.getMessage());
-//			onFailure(call, e);
-//		}
+		// try {
+		// new
+		// AlertDialog.Builder(this).setTitle("请求成功").setMessage(response.body().string())
+		// .setNegativeButton("确定", null).show();
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// Log.e(TAG, e.getMessage());
+		// onFailure(call, e);
+		// }
 	}
 
 	private void onFailure(Call call, Exception e) {

@@ -2,9 +2,11 @@ package com.example.helloworld;
 
 import java.io.IOException;
 
+import com.example.helloworld.entity.User;
 import com.example.helloworld.fragments.InputCellFragment;
 import com.example.helloworld.util.MD5;
 import com.example.helloworld.util.Util;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -86,13 +88,33 @@ public class LoginActivity extends Activity {
 
 			@Override
 			public void onResponse(final Call arg0, final Response arg1) throws IOException {
-				runOnUiThread(new Runnable() {
+				String jsonString=arg1.body().string();
+				ObjectMapper mapper=new ObjectMapper();
+				User user=null;
+				try {
+					user=mapper.readValue(jsonString, User.class);
+					if(user!=null){
+						runOnUiThread(new Runnable() {
 
-					@Override
-					public void run() {
-						LoginActivity.this.onResponse(arg0, arg1);
+							@Override
+							public void run() {
+								LoginActivity.this.onResponse(arg0, arg1);
+							}
+						});
 					}
-				});
+				} catch (Exception e) {
+					e.printStackTrace();
+					runOnUiThread(new Runnable() {
+						
+						@Override
+						public void run() {
+							Toast.makeText(LoginActivity.this, "数据解析异常", Toast.LENGTH_SHORT).show();
+							progressDialog.dismiss();
+						}
+					});
+					return;
+				}
+				
 			}
 
 			@Override
