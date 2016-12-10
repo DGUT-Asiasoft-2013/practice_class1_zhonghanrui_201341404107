@@ -70,7 +70,7 @@ public class LoginActivity extends Activity {
 
 	private void goLogin() {
 		String account=fragmentAccount.getText();
-		String password=fragmentAccount.getText();
+		String password=fragmentPassword.getText();
 		progressDialog.show();
 		
 		OkHttpClient client = new OkHttpClient();
