@@ -110,14 +110,16 @@ public class RegisterActivity extends Activity {
 
 	private void onResponse(Call call, Response response) {
 		progressDialog.dismiss();
-		try {
-			new AlertDialog.Builder(this).setTitle("请求成功").setMessage(response.body().string())
-					.setNegativeButton("确定", null).show();
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e(TAG, e.getMessage());
-			onFailure(call, e);
-		}
+		Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+		finish();
+//		try {
+//			new AlertDialog.Builder(this).setTitle("请求成功").setMessage(response.body().string())
+//					.setNegativeButton("确定", null).show();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			Log.e(TAG, e.getMessage());
+//			onFailure(call, e);
+//		}
 	}
 
 	private void onFailure(Call call, Exception e) {

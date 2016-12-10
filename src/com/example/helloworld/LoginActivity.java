@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MultipartBody;
@@ -110,15 +111,10 @@ public class LoginActivity extends Activity {
 
 	private void onResponse(Call call, Response response) {
 		progressDialog.dismiss();
-		try {
-			new AlertDialog.Builder(this).setTitle("登陆成功").setMessage(response.body().string())
-					.setNegativeButton("确定", null).show();
-			Intent intent = new Intent(this, HelloWorldActivity.class);
-			startActivity(intent);
-		} catch (IOException e) {
-			e.printStackTrace();
-			onFailure(call, e);
-		}
+		Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this, HelloWorldActivity.class);
+		startActivity(intent);
+		finish();
 	}
 
 	private void onFailure(Call call, Exception e) {
