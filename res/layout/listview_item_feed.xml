@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="hello"
         android:layout_toEndOf="@id/ivImg"
-        android:id="@+id/tvName"
+        android:id="@+id/tvTitle"
         android:layout_marginLeft="10dp"
         android:layout_alignTop="@id/ivImg"
         />
@@ -23,8 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2016-12-8 17:00"
-        android:layout_below="@id/tvName"
-        android:layout_alignStart="@id/tvName"
+        android:id="@+id/tvTime"
+        android:layout_below="@id/tvTitle"
+        android:layout_alignStart="@id/tvTitle"
         android:layout_marginTop="10dp"
         />
 
