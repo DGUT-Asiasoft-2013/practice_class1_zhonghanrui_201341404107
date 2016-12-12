@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.helloworld.LoginActivity" >
+        <activity android:name="com.example.helloworld.LoginActivity" android:launchMode="singleTask">
         </activity>
         <activity android:name="com.example.helloworld.RegisterActivity" >
         </activity>

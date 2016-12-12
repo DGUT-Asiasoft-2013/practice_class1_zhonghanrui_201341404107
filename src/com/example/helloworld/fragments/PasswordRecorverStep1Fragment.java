@@ -12,13 +12,14 @@ import android.view.ViewGroup;
 public class PasswordRecorverStep1Fragment extends Fragment {
 
 	private View view;
+	private InputCellFragment inputCellFragment;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (view == null) {
 			view = inflater.inflate(R.layout.fragment_password_recorver_step1, null);
 
-			InputCellFragment inputCellFragment = (InputCellFragment) getFragmentManager()
+			inputCellFragment = (InputCellFragment) getFragmentManager()
 					.findFragmentById(R.id.fragmentEmail);
 			inputCellFragment.setLabel("◊¢≤·” œ‰");
 			inputCellFragment.setInputHint(" ‰»Î◊¢≤·” œ‰µÿ÷∑");
@@ -37,6 +38,10 @@ public class PasswordRecorverStep1Fragment extends Fragment {
 		if (onGoNextListener != null) {
 			onGoNextListener.goNext();
 		}
+	}
+	
+	public String getEmailText(){
+		return inputCellFragment.getText();
 	}
 
 	public static interface OnGoNextListener {

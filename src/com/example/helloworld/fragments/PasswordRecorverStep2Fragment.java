@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class PasswordRecorverStep2Fragment extends Fragment {
 
@@ -32,6 +30,7 @@ public class PasswordRecorverStep2Fragment extends Fragment {
 
 				@Override
 				public void onClick(View v) {
+					onSubmit();
 				}
 			});
 		}
@@ -51,5 +50,32 @@ public class PasswordRecorverStep2Fragment extends Fragment {
 		fragmentPasswordRepeat.setLabel("÷ÿ∏¥√‹¬Î");
 		fragmentPasswordRepeat.setInputHint("«Î‘Ÿ¥Œ ‰»Î√‹¬Î");
 		fragmentPasswordRepeat.setPassword(true);
+	}
+	
+	private void onSubmit() {
+		if (onSubmitListener != null) {
+			onSubmitListener.onSubmit();
+		}
+	}
+	
+
+	public static interface OnSubmitListener {
+		void onSubmit();
+	}
+
+	private OnSubmitListener onSubmitListener;
+
+	public void setOnSubmitListener(OnSubmitListener onSubmitListener) {
+		this.onSubmitListener = onSubmitListener;
+	}
+	
+	public String getCode(){
+		return fragmentCode.getText();
+	}
+	public String getPassword(){
+		return fragmentPassword.getText();
+	}
+	public String getPasswordRepeat(){
+		return fragmentPasswordRepeat.getText();
 	}
 }
