@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 import java.io.IOException;
 
+import com.example.helloworld.api.Server;
 import com.example.helloworld.entity.User;
 import com.example.helloworld.fragments.InputCellFragment;
 import com.example.helloworld.util.MD5;
@@ -75,14 +76,13 @@ public class LoginActivity extends Activity {
 		String password=fragmentPassword.getText();
 		progressDialog.show();
 		
-		OkHttpClient client = new OkHttpClient();
+		OkHttpClient client = Server.getHttpClient();
 
 		MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM)
 				.addFormDataPart("account", account).addFormDataPart("password", MD5.getMD5(password));
 		MultipartBody body = builder.build();
 
-		Request request = new Request.Builder().method("GET", null).post(body)
-				.url("http://172.27.0.34:8080/membercenter/api/login").build();
+		Request request = Server.getRequestBuilderWithApi("login").post(body).build();
 		// 异步发起请求
 		client.newCall(request).enqueue(new Callback() {
 

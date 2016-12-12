@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 import java.io.IOException;
 
+import com.example.helloworld.api.Server;
 import com.example.helloworld.entity.User;
 import com.example.helloworld.fragments.InputCellFragment;
 import com.example.helloworld.fragments.InputCellPictureFragment;
@@ -73,7 +74,7 @@ public class RegisterActivity extends Activity {
 
 		progressDialog.show();
 
-		OkHttpClient client = new OkHttpClient();
+		OkHttpClient client = Server.getHttpClient();
 
 		MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM)
 				.addFormDataPart("account", account).addFormDataPart("name", name)
@@ -84,8 +85,7 @@ public class RegisterActivity extends Activity {
 		}
 		MultipartBody body = builder.build();
 
-		Request request = new Request.Builder().method("GET", null).post(body)
-				.url("http://172.27.0.34:8080/membercenter/api/register").build();
+		Request request = Server.getRequestBuilderWithApi("register").post(body).build();
 		// 异步发起请求
 		client.newCall(request).enqueue(new Callback() {
 

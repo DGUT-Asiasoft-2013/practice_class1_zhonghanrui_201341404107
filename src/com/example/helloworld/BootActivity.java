@@ -2,6 +2,8 @@ package com.example.helloworld;
 
 import java.io.IOException;
 
+import com.example.helloworld.api.Server;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,12 +38,11 @@ public class BootActivity extends Activity {
 	}
 
 	private void getData() {
-		//创建客户端对象
-		OkHttpClient client = new OkHttpClient();
-		//创建请求并将请求放到请求队列
-		Request request = new Request.Builder().method("GET", null).url("http://172.27.0.34:8080/membercenter/api/hello")
-				.build();
-		//异步发起请求
+		// 创建客户端对象
+		OkHttpClient client = Server.getHttpClient();
+		// 创建请求并将请求放到请求队列
+		Request request = Server.getRequestBuilderWithApi("hello").build();
+		// 异步发起请求
 		client.newCall(request).enqueue(new Callback() {
 
 			/**
