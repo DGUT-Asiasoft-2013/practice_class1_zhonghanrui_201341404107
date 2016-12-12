@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class MyProfileFragment extends Fragment {
 	private View view;
 	private TextView tvShow;
 	private AvatarView avatar;
+	private String TAG="OK";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,7 +34,6 @@ public class MyProfileFragment extends Fragment {
 			tvShow = (TextView) view.findViewById(R.id.tvShow);
 			avatar = (AvatarView) view.findViewById(R.id.avatar);
 		}
-		
 		return view;
 	}
 	
@@ -46,7 +47,7 @@ public class MyProfileFragment extends Fragment {
 
 			@Override
 			public void onResponse(final Call arg0, final Response arg1) throws IOException {
-
+				Log.e(TAG, "a");
 				String jsonString = arg1.body().string();
 				ObjectMapper mapper = new ObjectMapper();
 				try {

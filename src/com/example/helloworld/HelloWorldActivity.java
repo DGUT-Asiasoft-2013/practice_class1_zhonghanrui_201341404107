@@ -33,16 +33,11 @@ public class HelloWorldActivity extends Activity {
 				contentChange(index);
 			}
 		});
-
+		tabbarFragment.setSelectedItem(0);
 	}
 
 	private void contentChange(int index) {
 		getFragmentManager().beginTransaction().replace(R.id.container, frags[index]).commit();
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		tabbarFragment.setSelectedItem(0);
-	}
 }
