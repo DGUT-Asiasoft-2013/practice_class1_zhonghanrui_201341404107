@@ -16,6 +16,24 @@ public class Article implements Serializable {
 
 	private String title;
 	private String text;
+	private String authorName;
+	private String authorAvatar;
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public void setAuthorAvatar(String authorAvatar) {
+		this.authorAvatar = authorAvatar;
+	}
+
+	public String getAuthorAvatar() {
+		return authorAvatar;
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
 
 	public int getId() {
 		return id;

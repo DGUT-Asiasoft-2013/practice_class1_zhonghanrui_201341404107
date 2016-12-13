@@ -14,6 +14,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -50,7 +51,7 @@ public class LoginActivity extends Activity {
 			}
 		});
 		findViewById(R.id.tvFindPwd).setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				findPwd();
@@ -58,7 +59,7 @@ public class LoginActivity extends Activity {
 		});
 		fragmentAccount = (InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentAccount);
 		fragmentPassword = (InputCellFragment) getFragmentManager().findFragmentById(R.id.fragmentPassword);
-		progressDialog=Util.getProgressDialog(this);
+		progressDialog = Util.getProgressDialog(this);
 	}
 
 	private void findPwd() {
@@ -72,10 +73,10 @@ public class LoginActivity extends Activity {
 	}
 
 	private void goLogin() {
-		String account=fragmentAccount.getText();
-		String password=fragmentPassword.getText();
+		String account = fragmentAccount.getText();
+		String password = fragmentPassword.getText();
 		progressDialog.show();
-		
+
 		OkHttpClient client = Server.getHttpClient();
 
 		MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -88,39 +89,43 @@ public class LoginActivity extends Activity {
 
 			@Override
 			public void onResponse(final Call arg0, final Response arg1) throws IOException {
-				String jsonString=arg1.body().string();
-				ObjectMapper mapper=new ObjectMapper();
-				User user=null;
-				try {
-					user=mapper.readValue(jsonString, User.class);
-					if(user!=null){
-						runOnUiThread(new Runnable() {
+				runOnUiThread(new Runnable() {
 
-							@Override
-							public void run() {
+					@Override
+					public void run() {
+						progressDialog.dismiss();
+						String jsonString=null;
+						try {
+							jsonString = arg1.body().string();
+							if(TextUtils.isEmpty(jsonString)){
+								Toast.makeText(LoginActivity.this, "用户不存在或密码错误", Toast.LENGTH_SHORT).show();
+								return;
+							}
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						ObjectMapper mapper = new ObjectMapper();
+						User user = null;
+						try {
+							user = mapper.readValue(jsonString, User.class);
+							if (user != null) {
 								LoginActivity.this.onResponse(arg0, arg1);
 							}
-						});
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-					runOnUiThread(new Runnable() {
-						
-						@Override
-						public void run() {
+						} catch (Exception e) {
+							e.printStackTrace();
 							Toast.makeText(LoginActivity.this, "数据解析异常", Toast.LENGTH_SHORT).show();
-							progressDialog.dismiss();
+							
 						}
-					});
-					return;
-				}
-				
+					}
+				});
+
 			}
 
 			@Override
 			public void onFailure(final Call arg0, final IOException arg1) {
 				runOnUiThread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						LoginActivity.this.onFailure(arg0, arg1);
@@ -128,11 +133,10 @@ public class LoginActivity extends Activity {
 				});
 			}
 		});
-		
+
 	}
 
 	private void onResponse(Call call, Response response) {
-		progressDialog.dismiss();
 		Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
 		Intent intent = new Intent(this, HelloWorldActivity.class);
 		startActivity(intent);
@@ -144,7 +148,7 @@ public class LoginActivity extends Activity {
 		e.printStackTrace();
 		new AlertDialog.Builder(this).setTitle("登陆失败").setMessage(e.getLocalizedMessage()).show();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();

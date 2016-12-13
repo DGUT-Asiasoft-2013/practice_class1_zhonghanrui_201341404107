@@ -41,13 +41,12 @@ public class MyProfileFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		OkHttpClient client = Server.getHttpClient();
-		Request request = Server.getRequestBuilderWithApi("me").method("GET", null).build();
+		Request request = Server.getRequestBuilderWithApi("me").build();
 		// 异步发起请求
 		client.newCall(request).enqueue(new Callback() {
 
 			@Override
 			public void onResponse(final Call arg0, final Response arg1) throws IOException {
-				Log.e(TAG, "a");
 				String jsonString = arg1.body().string();
 				ObjectMapper mapper = new ObjectMapper();
 				try {
@@ -58,7 +57,7 @@ public class MyProfileFragment extends Fragment {
 							@Override
 							public void run() {
 								tvShow.setText(user.getName());
-								avatar.load(user);
+								avatar.load(user.getAvatar());
 							}
 						});
 					}

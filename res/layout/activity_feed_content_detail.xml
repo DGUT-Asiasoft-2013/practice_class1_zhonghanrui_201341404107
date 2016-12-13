@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/avatar"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/avatar"
         android:text="hello" />
 
@@ -34,9 +34,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvTitle"
-        android:layout_below="@id/tvTime"
-        android:layout_alignLeft="@id/tvTime"
+        android:layout_below="@id/avatar"
+        android:gravity="center"
         android:layout_marginTop="5dp"
+        />
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvContent"
+        android:layout_below="@id/tvTitle"
+        android:layout_margin="15dp"
         />
 
 </RelativeLayout>
