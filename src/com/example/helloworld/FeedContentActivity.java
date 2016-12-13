@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class FeedContentActivity extends Activity {
 

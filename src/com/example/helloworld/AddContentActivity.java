@@ -7,6 +7,7 @@ import com.example.helloworld.entity.Article;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -67,13 +68,13 @@ public class AddContentActivity extends Activity {
 				Log.e(TAG, jsonString);
 				ObjectMapper mapper = new ObjectMapper();
 				try {
-					Article article = mapper.readValue(jsonString, Article.class);
+					final Article article = mapper.readValue(jsonString, Article.class);
 					if (article != null) {
 						runOnUiThread(new Runnable() {
 
 							@Override
 							public void run() {
-								onSuccess();
+								onSuccess(article);
 							}
 						});
 					}
@@ -104,8 +105,11 @@ public class AddContentActivity extends Activity {
 
 	}
 	
-	private void onSuccess(){
+	private void onSuccess(Article article){
 		Toast.makeText(this, "添加文章成功", Toast.LENGTH_SHORT).show();
+		Intent intent=new Intent();
+		intent.putExtra("article", article);
+		setResult(RESULT_OK, intent);
 		finish();
 	}
 

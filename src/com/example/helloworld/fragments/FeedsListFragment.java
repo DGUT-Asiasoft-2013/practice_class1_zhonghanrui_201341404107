@@ -1,7 +1,6 @@
 package com.example.helloworld.fragments;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 
 import com.example.helloworld.FeedContentActivity;
@@ -45,6 +44,7 @@ public class FeedsListFragment extends Fragment implements OnClickListener {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		
 		if (view == null) {
 			view = inflater.inflate(R.layout.fragment_page_feed_list, null);
 			listview = (ListView) view.findViewById(R.id.listview);
@@ -84,6 +84,11 @@ public class FeedsListFragment extends Fragment implements OnClickListener {
 		 startActivity(intent);
 	}
 
+	public void addNewFeed(Article article){
+		listAdapter.addItem(article,0);
+		listAdapter.notifyDataSetChanged();
+	}
+	
 	private void getData() {
 		// 创建客户端对象
 		OkHttpClient client = Server.getHttpClient();
@@ -106,9 +111,12 @@ public class FeedsListFragment extends Fragment implements OnClickListener {
 						try {
 							page = parseArticleList(jsonString);
 							articleList = page.getContent();
-							currentPage=page.getNumber();
-							listAdapter.addData(articleList);
-							listAdapter.notifyDataSetChanged();
+							if(articleList!=null&&articleList.size()>0){
+								currentPage=page.getNumber();
+								listAdapter.addData(articleList);
+								listAdapter.notifyDataSetChanged();
+							}
+							
 							tvLoadMore.setText("加载更多");
 						} catch (Exception e) {
 							e.printStackTrace();

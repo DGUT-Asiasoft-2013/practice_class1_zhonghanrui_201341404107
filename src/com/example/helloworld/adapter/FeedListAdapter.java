@@ -88,4 +88,7 @@ public class FeedListAdapter extends BaseAdapter {
 	public void addItem(Article article) {
 		this.articleList.add(article);
 	}
+	public void addItem(Article article,int index) {
+		this.articleList.add(0,article);
+	}
 }
