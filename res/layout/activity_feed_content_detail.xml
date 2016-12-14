@@ -100,5 +100,12 @@
             android:layout_height="1dp"
             android:background="@color/gray" />
     </LinearLayout>
+    <ListView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvComment"
+        android:layout_above="@id/layoutBottom"
+        android:layout_below="@id/layoutComment"
+        ></ListView>
 
 </RelativeLayout>
