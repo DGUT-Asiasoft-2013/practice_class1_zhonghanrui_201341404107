@@ -8,16 +8,6 @@ public class Comment {
 	private Date editDate;
 	private String text;
 	private User author;
-	private Article article;
-
-	
-	public Article getArticle() {
-		return article;
-	}
-
-	public void setArticle(Article article) {
-		this.article = article;
-	}
 
 	public String getText() {
 		return text;

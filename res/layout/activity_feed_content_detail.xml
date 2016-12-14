@@ -10,26 +10,47 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/btnCollect"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="收藏" />
+            android:gravity="center" >
 
-        <Button
-            android:id="@+id/btnLike"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="点赞" />
+            <ImageView
+                android:id="@+id/btnCollect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/message_tabbar"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnComment"
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="评论" />
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/btnLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/like"
+                android:gravity="center_vertical"
+                android:text="0" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/btnComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toolbar_icon_comment" />
+        </LinearLayout>
     </LinearLayout>
 
     <com.example.helloworld.view.AvatarView
@@ -77,35 +98,37 @@
         android:layout_margin="15dp" />
 
     <LinearLayout
+        android:id="@+id/layoutComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvContent"
-        android:id="@+id/layoutComment"
         android:orientation="vertical" >
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray" />
-        <TextView 
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textSize="18sp"
-            android:text="评论列表"
             android:gravity="center"
-            />
-          <View
+            android:padding="5dp"
+            android:text="评论列表"
+            android:textSize="18sp" />
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray" />
     </LinearLayout>
-    <ListView 
+
+    <ListView
+        android:id="@+id/lvComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lvComment"
         android:layout_above="@id/layoutBottom"
-        android:layout_below="@id/layoutComment"
-        ></ListView>
+        android:layout_below="@id/layoutComment" >
+    </ListView>
 
 </RelativeLayout>
