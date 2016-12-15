@@ -74,6 +74,7 @@ public class BootActivity extends Activity {
 					@Override
 					public void run() {
 						Toast.makeText(BootActivity.this, arg1.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+						startLoginActivity();
 					}
 				});
 			}

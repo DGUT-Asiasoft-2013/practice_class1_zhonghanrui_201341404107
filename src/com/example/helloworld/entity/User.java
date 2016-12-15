@@ -7,7 +7,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 8536287158797498878L;
 	private int id;
 	private String account;
-	private String passwordHash;
+//	private String passwordHash;
 	private String name;
 	private String email;
 	private String avatar;
@@ -28,13 +28,13 @@ public class User implements Serializable {
 		this.account = account;
 	}
 
-	public String getPasswordHash() {
-		return passwordHash;
-	}
-
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
-	}
+//	public String getPasswordHash() {
+//		return passwordHash;
+//	}
+//
+//	public void setPasswordHash(String passwordHash) {
+//		this.passwordHash = passwordHash;
+//	}
 
 	public String getName() {
 		return name;
