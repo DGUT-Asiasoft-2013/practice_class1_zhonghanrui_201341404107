@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.helloworld.FeedContentActivity;
 import com.example.helloworld.R;
+import com.example.helloworld.SearchActivity;
 import com.example.helloworld.adapter.FeedListAdapter;
 import com.example.helloworld.api.Server;
 import com.example.helloworld.entity.Article;
