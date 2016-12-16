@@ -6,6 +6,7 @@ import com.example.helloworld.fragments.MainTabbarFragment;
 import com.example.helloworld.fragments.MainTabbarFragment.OnTabSelectedListener;
 import com.example.helloworld.fragments.MainTabbarFragment.onAddNewFeedListener;
 import com.example.helloworld.fragments.MyProfileFragment;
+import com.example.helloworld.fragments.MyProfileFragment.OnUpdatePwdListener;
 import com.example.helloworld.fragments.NoteListFragment;
 import com.example.helloworld.fragments.SearchPageFragment;
 
@@ -38,12 +39,25 @@ public class HelloWorldActivity extends Activity {
 		});
 		tabbarFragment.setSelectedItem(0);
 		tabbarFragment.setOnAddNewFeedListener(new onAddNewFeedListener() {
-			
+
 			@Override
 			public void onAddNewFeed() {
 				addNewArticle();
 			}
 		});
+		contentMyProfile.setOnUpdatePwdListener(new OnUpdatePwdListener() {
+
+			@Override
+			public void updatePwd() {
+				HelloWorldActivity.this.updatePwd();
+			}
+		});
+	}
+
+	private void updatePwd() {
+		Intent intent = new Intent(this, PasswordRecoverActivity.class);
+		startActivityForResult(intent, 2);
+		overridePendingTransition(R.anim.slide_in_bottom, 0);
 	}
 
 	private void addNewArticle() {
@@ -51,13 +65,19 @@ public class HelloWorldActivity extends Activity {
 		startActivityForResult(intent, 1);
 		overridePendingTransition(R.anim.slide_in_bottom, 0);
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (resultCode == Activity.RESULT_OK) {
-			Article article = (Article) data.getSerializableExtra("article");
-			contentFeedList.addNewFeed(article);
+			if (requestCode == 1) {
+				Article article = (Article) data.getSerializableExtra("article");
+				contentFeedList.addNewFeed(article);
+			} else if (requestCode == 2) {
+				Intent intent = new Intent(this, LoginActivity.class);
+				startActivity(intent);
+				finish();
+			}
 		}
 	}
 

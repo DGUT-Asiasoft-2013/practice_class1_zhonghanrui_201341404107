@@ -64,7 +64,7 @@ public class LoginActivity extends Activity {
 
 	private void findPwd() {
 		Intent intent = new Intent(this, PasswordRecoverActivity.class);
-		startActivity(intent);
+		startActivityForResult(intent,0);
 	}
 
 	private void goRegister() {

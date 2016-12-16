@@ -158,8 +158,7 @@ public class PasswordRecoverActivity extends Activity {
 
 	private void step2OnResponse(Call call, Response response) {
 		Toast.makeText(this, "修改密码成功，请重新登录", Toast.LENGTH_SHORT).show();
+		setResult(RESULT_OK);
 		finish();
-		Intent intent = new Intent(this, LoginActivity.class);
-		startActivity(intent);
 	}
 }
